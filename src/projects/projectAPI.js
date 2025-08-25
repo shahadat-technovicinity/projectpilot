@@ -76,6 +76,12 @@ const projectAPI = {
       );
     }
   },
+  async find(id) {
+    const response = await fetch(`${url}/${id}`);
+    const response_1 = await checkStatus(response);
+    const p = await parseJSON(response_1);
+    return new Project(p);
+  },
 };
 
 export { projectAPI };

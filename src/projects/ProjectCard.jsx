@@ -1,6 +1,7 @@
 import { Project } from './Project';
 import PropTypes from 'prop-types';
 import ProjectForm from './ProjectForm';
+import { Link } from 'react-router';
 
 function formatDescription(description) {
   return description.substring(0, 60) + '...';
@@ -13,18 +14,22 @@ function ProjectCard(props) {
   };
   return (
     <div className="card">
+       <Link to={'/projects/' + project.id}>
       <img src={project.imageUrl} alt={project.name} />
       <section className="section dark">
-        <h5 className="strong">
-          <strong>{project.name}</strong>
-        </h5>
-        <p>{formatDescription(project.description)}</p>
-        <p>Budget : {project.budget.toLocaleString()}</p>
+       
+          <h5 className="strong">
+            <strong>{project.name}</strong>
+          </h5>
+          <p>{formatDescription(project.description)}</p>
+          <p>Budget : {project.budget.toLocaleString()}</p>
+        
         <button className="bordered" onClick={()=> handleEditClick(project)} >
         <span className="icon-edit "></span>
         Edit
         </button>
       </section>
+    </Link>
     </div>
   );
 }
